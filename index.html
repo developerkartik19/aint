@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VIBE — Music Universe</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- Background orbs -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">VIBE</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#trending">Trending</a></li>
+      <li><a href="#genres">Genres</a></li>
+      <li><a href="#artists">Artists</a></li>
+    </ul>
+    <button class="nav-btn">Sign In</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <span class="hero-label">🎧 Now Streaming</span>
+      <h1 class="hero-title">
+        Feel Every<br/>
+        <em>Beat.</em>
+      </h1>
+      <p class="hero-sub">Discover music that moves your soul. Curated sounds for every mood, every moment.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="scrollToSection('trending')">Explore Music</button>
+        <button class="btn-ghost">▶ Play Featured</button>
+      </div>
+    </div>
+
+    <!-- Featured Player Card -->
+    <div class="hero-card">
+      <div class="card-vinyl" id="heroVinyl">
+        <img src="https://picsum.photos/seed/music1/400/400" alt="Featured Album"/>
+        <div class="vinyl-hole"></div>
+      </div>
+      <div class="card-info">
+        <p class="card-artist">The Weeknd</p>
+        <h3 class="card-title">Blinding Lights</h3>
+        <div class="card-bar">
+          <div class="progress-line"><div class="progress-fill" id="heroProgress"></div></div>
+          <span class="card-time">2:34 / 4:22</span>
+        </div>
+        <div class="card-controls">
+          <button class="ctrl-btn">⏮</button>
+          <button class="ctrl-btn play-big" id="heroPlay" onclick="toggleHeroPlay()">▶</button>
+          <button class="ctrl-btn">⏭</button>
+        </div>
+        <div class="eq-bars" id="eqBars">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee Ticker -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>🔥 Blinding Lights &nbsp;•&nbsp;</span>
+      <span>🎵 Levitating &nbsp;•&nbsp;</span>
+      <span>🌊 Watermelon Sugar &nbsp;•&nbsp;</span>
+      <span>⚡ Stay &nbsp;•&nbsp;</span>
+      <span>🌙 Starboy &nbsp;•&nbsp;</span>
+      <span>🎸 Heat Waves &nbsp;•&nbsp;</span>
+      <span>🌟 Peaches &nbsp;•&nbsp;</span>
+      <span>💫 Good 4 U &nbsp;•&nbsp;</span>
+      <span>🎤 Montero &nbsp;•&nbsp;</span>
+      <span>🔥 Blinding Lights &nbsp;•&nbsp;</span>
+      <span>🎵 Levitating &nbsp;•&nbsp;</span>
+      <span>🌊 Watermelon Sugar &nbsp;•&nbsp;</span>
+      <span>⚡ Stay &nbsp;•&nbsp;</span>
+      <span>🌙 Starboy &nbsp;•&nbsp;</span>
+      <span>🎸 Heat Waves &nbsp;•&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- Trending Section -->
+  <section class="section" id="trending">
+    <div class="section-header">
+      <h2 class="section-title">Trending Now</h2>
+      <a href="#" class="see-all">See All →</a>
+    </div>
+    <div class="songs-grid" id="songsGrid">
+
+      <div class="song-card" data-index="0">
+        <div class="song-img-wrap">
+          <img src="https://picsum.photos/seed/vibesong1/300/300" alt="Blinding Lights"/>
+          <div class="song-overlay">
+            <button class="play-overlay" onclick="playSong(0)">▶</button>
+          </div>
+          <span class="song-badge">#1</span>
+        </div>
+        <div class="song-details">
+          <h4>Blinding Lights</h4>
+          <p>The Weeknd</p>
+          <div class="song-meta"><span>3:20</span><span>Pop</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this)">♡</button>
+      </div>
+
+      <div class="song-card" data-index="1">
+        <div class="song-img-wrap">
+          <img src="https://picsum.photos/seed/vibesong2/300/300" alt="Levitating"/>
+          <div class="song-overlay">
+            <button class="play-overlay" onclick="playSong(1)">▶</button>
+          </div>
+          <span class="song-badge">#2</span>
+        </div>
+        <div class="song-details">
+          <h4>Levitating</h4>
+          <p>Dua Lipa</p>
+          <div class="song-meta"><span>3:23</span><span>Pop</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this)">♡</button>
+      </div>
+
+      <div class="song-card" data-index="2">
+        <div class="song-img-wrap">
+          <img src="https://picsum.photos/seed/vibesong3/300/300" alt="Heat Waves"/>
+          <div class="song-overlay">
+            <button class="play-overlay" onclick="playSong(2)">▶</button>
+          </div>
+          <span class="song-badge">#3</span>
+        </div>
+        <div class="song-details">
+          <h4>Heat Waves</h4>
+          <p>Glass Animals</p>
+          <div class="song-meta"><span>3:59</span><span>Indie</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this)">♡</button>
+      </div>
+
+      <div class="song-card" data-index="3">
+        <div class="song-img-wrap">
+          <img src="https://picsum.photos/seed/vibesong4/300/300" alt="Stay"/>
+          <div class="song-overlay">
+            <button class="play-overlay" onclick="playSong(3)">▶</button>
+          </div>
+          <span class="song-badge">#4</span>
+        </div>
+        <div class="song-details">
+          <h4>Stay</h4>
+          <p>The Kid LAROI</p>
+          <div class="song-meta"><span>2:21</span><span>Hip-Hop</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this)">♡</button>
+      </div>
+
+      <div class="song-card" data-index="4">
+        <div class="song-img-wrap">
+          <img src="https://picsum.photos/seed/vibesong5/300/300" alt="Watermelon Sugar"/>
+          <div class="song-overlay">
+            <button class="play-overlay" onclick="playSong(4)">▶</button>
+          </div>
+          <span class="song-badge">#5</span>
+        </div>
+        <div class="song-details">
+          <h4>Watermelon Sugar</h4>
+          <p>Harry Styles</p>
+          <div class="song-meta"><span>2:54</span><span>Pop Rock</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this)">♡</button>
+      </div>
+
+      <div class="song-card" data-index="5">
+        <div class="song-img-wrap">
+          <img src="https://picsum.photos/seed/vibesong6/300/300" alt="Good 4 U"/>
+          <div class="song-overlay">
+            <button class="play-overlay" onclick="playSong(5)">▶</button>
+          </div>
+          <span class="song-badge">#6</span>
+        </div>
+        <div class="song-details">
+          <h4>Good 4 U</h4>
+          <p>Olivia Rodrigo</p>
+          <div class="song-meta"><span>2:58</span><span>Pop Punk</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this)">♡</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Genre Section -->
+  <section class="section" id="genres">
+    <div class="section-header">
+      <h2 class="section-title">Browse by Genre</h2>
+    </div>
+    <div class="genre-grid">
+      <div class="genre-card g-pop">
+        <img src="https://picsum.photos/seed/gpop/400/250" alt="Pop"/>
+        <div class="genre-label">
+          <span class="genre-icon">🎤</span>
+          <h3>Pop</h3>
+          <p>124M listeners</p>
+        </div>
+      </div>
+      <div class="genre-card g-hiphop">
+        <img src="https://picsum.photos/seed/ghiphop/400/250" alt="Hip-Hop"/>
+        <div class="genre-label">
+          <span class="genre-icon">🎧</span>
+          <h3>Hip-Hop</h3>
+          <p>98M listeners</p>
+        </div>
+      </div>
+      <div class="genre-card g-rock">
+        <img src="https://picsum.photos/seed/grock/400/250" alt="Rock"/>
+        <div class="genre-label">
+          <span class="genre-icon">🎸</span>
+          <h3>Rock</h3>
+          <p>76M listeners</p>
+        </div>
+      </div>
+      <div class="genre-card g-electronic">
+        <img src="https://picsum.photos/seed/gelec/400/250" alt="Electronic"/>
+        <div class="genre-label">
+          <span class="genre-icon">⚡</span>
+          <h3>Electronic</h3>
+          <p>62M listeners</p>
+        </div>
+      </div>
+      <div class="genre-card g-jazz">
+        <img src="https://picsum.photos/seed/gjazz/400/250" alt="Jazz"/>
+        <div class="genre-label">
+          <span class="genre-icon">🎷</span>
+          <h3>Jazz</h3>
+          <p>41M listeners</p>
+        </div>
+      </div>
+      <div class="genre-card g-classical">
+        <img src="https://picsum.photos/seed/gclass/400/250" alt="Classical"/>
+        <div class="genre-label">
+          <span class="genre-icon">🎻</span>
+          <h3>Classical</h3>
+          <p>34M listeners</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artists Section -->
+  <section class="section" id="artists">
+    <div class="section-header">
+      <h2 class="section-title">Featured Artists</h2>
+      <a href="#" class="see-all">See All →</a>
+    </div>
+    <div class="artists-row">
+      <div class="artist-bubble">
+        <div class="artist-img"><img src="https://picsum.photos/seed/artist1/200/200" alt="Artist"/></div>
+        <p class="artist-name">The Weeknd</p>
+        <p class="artist-sub">22M followers</p>
+      </div>
+      <div class="artist-bubble">
+        <div class="artist-img"><img src="https://picsum.photos/seed/artist2/200/200" alt="Artist"/></div>
+        <p class="artist-name">Dua Lipa</p>
+        <p class="artist-sub">18M followers</p>
+      </div>
+      <div class="artist-bubble">
+        <div class="artist-img"><img src="https://picsum.photos/seed/artist3/200/200" alt="Artist"/></div>
+        <p class="artist-name">Drake</p>
+        <p class="artist-sub">30M followers</p>
+      </div>
+      <div class="artist-bubble">
+        <div class="artist-img"><img src="https://picsum.photos/seed/artist4/200/200" alt="Artist"/></div>
+        <p class="artist-name">Taylor Swift</p>
+        <p class="artist-sub">42M followers</p>
+      </div>
+      <div class="artist-bubble">
+        <div class="artist-img"><img src="https://picsum.photos/seed/artist5/200/200" alt="Artist"/></div>
+        <p class="artist-name">Billie Eilish</p>
+        <p class="artist-sub">25M followers</p>
+      </div>
+      <div class="artist-bubble">
+        <div class="artist-img"><img src="https://picsum.photos/seed/artist6/200/200" alt="Artist"/></div>
+        <p class="artist-name">Post Malone</p>
+        <p class="artist-sub">19M followers</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mini Player Bar -->
+  <div class="mini-player" id="miniPlayer">
+    <div class="mini-left">
+      <img src="https://picsum.photos/seed/vibesong1/80/80" alt="song" id="miniImg"/>
+      <div>
+        <p id="miniTitle">Blinding Lights</p>
+        <span id="miniArtist">The Weeknd</span>
+      </div>
+    </div>
+    <div class="mini-controls">
+      <button onclick="prevSong()">⏮</button>
+      <button class="mini-play-btn" id="miniPlayBtn" onclick="togglePlay()">▶</button>
+      <button onclick="nextSong()">⏭</button>
+    </div>
+    <div class="mini-right">
+      <div class="mini-progress">
+        <div class="mini-fill" id="miniProgressFill"></div>
+      </div>
+      <span id="miniTime">0:00</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h2>VIBE</h2>
+        <p>Your universe of sound.</p>
+      </div>
+      <div class="footer-links">
+        <div><h4>Discover</h4><a href="#">New Releases</a><a href="#">Charts</a><a href="#">Podcasts</a></div>
+        <div><h4>Company</h4><a href="#">About</a><a href="#">Careers</a><a href="#">Blog</a></div>
+        <div><h4>Support</h4><a href="#">Help</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VIBE Music. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#">𝕏</a><a href="#">IG</a><a href="#">YT</a><a href="#">SP</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
